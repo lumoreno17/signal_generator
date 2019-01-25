@@ -23,7 +23,8 @@
 namespace hyro
 {
   DigitalConverterComponent::DigitalConverterComponent(URI uri): hyro::Component(uri){
-
+    m_amplitude = 3.0;
+    m_thresholding = 0.0;
   }
 
   std::shared_ptr<hyro::HyroLogger> DigitalConverterComponent::s_logger = hyro::HyroLoggerManager::CreateLogger("DigitalConverterComponent");
@@ -72,14 +73,13 @@ namespace hyro
   and send to another component */
   void
   DigitalConverterComponent::callback (std::shared_ptr<const Signal> && value){
-    s_logger->info("Estou no callback");
+    s_logger->info("I am in callback");
     hyro::Signal analog_signal;
     analog_signal = *value;
-    Thresholding digital_converter(analog_signal.value,2.0);
+    Thresholding digital_converter(analog_signal.value,m_amplitude,m_thresholding);
     float digital_signal = digital_converter.makeThresholding(); 
     m_output->sendAsync(digital_signal);
     s_logger->info("Data received {}:", digital_signal);
   } 
 
 } // namespace hyro
-

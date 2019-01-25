@@ -8,7 +8,6 @@
 #ifndef THRESHOLDING_H
 #define THRESHOLDING_H
 
-#define THRESHOLDING 0
 namespace hyro
 {
 class Thresholding{
@@ -18,7 +17,7 @@ class Thresholding{
    * amplitude is the amplitude of the digital signal.
    * 
    */
-  double data_sample, amplitude;
+  double data_sample, amplitude, thresholding;
   public:
     /**
      * @brief Construct a new Thresholding object
@@ -26,7 +25,7 @@ class Thresholding{
      * @param data_sample the input value to be analyzed
      * @param amplitude the amplitude of the digital signal 
      */
-    Thresholding(double data_sample, double amplitude);
+    Thresholding(double data_sample, float amplitude, float thresholding);
     /**
      * @brief Comparison between the data_sample value and threshold value
      * 

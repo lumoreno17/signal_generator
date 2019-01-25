@@ -88,7 +88,7 @@ namespace hyro
             std::shared_ptr<hyro::ChannelOutput<float>> m_output; 
 
             std::unique_ptr<ISpinner> m_spinner;
-
+            float m_amplitude, m_thresholding;
 
     };
 

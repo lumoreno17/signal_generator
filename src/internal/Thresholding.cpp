@@ -17,14 +17,14 @@ namespace hyro
   /**
    * @brief Construct a new Thresholding:: Thresholding object
    */
-Thresholding::Thresholding(double data_sample, double amplitude):
-  data_sample(data_sample), amplitude(amplitude)
+Thresholding::Thresholding(double data_sample, float amplitude, float thresholding):
+  data_sample(data_sample), amplitude(amplitude), thresholding(thresholding)
 {
 }
 
 /* Convert the signal value in a digital one */
 float Thresholding::makeThresholding(){
-  if(data_sample > THRESHOLDING){
+  if(data_sample > thresholding){
     data_sample = amplitude;
     return data_sample;
   }
