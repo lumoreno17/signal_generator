@@ -1,10 +1,7 @@
 #Package information
 hyro_init_package(signal_generator VERSION 0.0.1)
 
-#Include packages of QtDesigner
-include ( FindPkgConfig  )
 find_package ( Qt4 COMPONENTS QtCore QtGui QtOpenGl )
-find_package ( QWT )
 
 #Required packages
 hyro_find_package(hyro_utils REQUIRED)
@@ -12,8 +9,6 @@ hyro_find_package(hyro_msgs REQUIRED)
 hyro_find_package(hyro_widgets REQUIRED)
 
 include(${QT_USE_FILE} )
-add_definitions(${QT_DEFINITIONS})
-
 
 include_directories(
   ${PROJECT_SOURCE_DIR}/src
@@ -36,9 +31,6 @@ set(SIGNAL_GENERATOR_SOURCES
   src/internal/SignalGenerator.cpp
   src/internal/Thresholding.cpp
 )
-
-QT4_ADD_RESOURCES(QtApp_RCC_SRCS src/widgets/resources.qrc)
-qt4_wrap_cpp( ${PROJECT_NAME}_MOC_CPP ${hyro_widgets_HEADERS_MOC} )
 
 hyro_add_library(
   ${PROJECT_NAME}_components
@@ -79,7 +71,3 @@ hyro_add_gtest(${PROJECT_NAME}
   DEPENDS_ON
     ${PROJECT_NAME}_components
 )
-
-
-
-
