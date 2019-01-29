@@ -16,9 +16,7 @@ add_definitions(${QT_DEFINITIONS})
 
 
 include_directories(
-
   ${PROJECT_SOURCE_DIR}/src
-
 )
 
 #Declare header files
@@ -40,9 +38,7 @@ set(SIGNAL_GENERATOR_SOURCES
 )
 
 QT4_ADD_RESOURCES(QtApp_RCC_SRCS src/widgets/resources.qrc)
-
 qt4_wrap_cpp( ${PROJECT_NAME}_MOC_CPP ${hyro_widgets_HEADERS_MOC} )
-
 
 hyro_add_library(
   ${PROJECT_NAME}_components
@@ -61,6 +57,7 @@ hyro_add_executable(
   DEPENDS_ON 
     ${PROJECT_NAME}_components
 )
+
 #Message declaration
 hyro_compile_messages(
   ${PROJECT_NAME}_components

@@ -30,7 +30,7 @@ namespace hyro
   {
     signal = SignalGenerator();
     std::shared_ptr<ChannelOutput<std::vector<int>>>
-      m_dummy = this->registerOutput<std::vector<int>>("fix_dynamic"_uri, config);
+    m_dummy = this->registerOutput<std::vector<int>>("fix_dynamic"_uri, config);
     s_logger->info("Init:");
   
     m_output = this->registerOutput<Signal>("signals"_uri, config);
@@ -78,9 +78,6 @@ namespace hyro
     signal.setAmplitude(m_amplitude);
     signal.setFrequency(m_frequency);
     message.value = signal.getSignalValue(m_cosine);
-    //s_logger->info("Cossine value {}:", m_cosine);
-    //s_logger->info("Amplitude value {}:", m_amplitude);
-    //s_logger->info("Frequency value {}:", m_frequency);
     m_output->sendAsync(message);
     s_logger->info("Sending data {}:", message);
     return hyro::Result::RESULT_OK;
