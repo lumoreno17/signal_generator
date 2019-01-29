@@ -33,7 +33,6 @@ float SignalGenerator::getSignalValue(bool cosine)
   if(cosine){
       return m_amp *cos(rad);
   }
-  //std::cerr << m_amp *sin(rad) << std::endl;
   return m_amp *sin(rad);
 }
 

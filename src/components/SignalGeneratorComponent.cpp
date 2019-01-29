@@ -73,7 +73,7 @@ namespace hyro
   hyro::Result
   SignalGeneratorComponent::update()
   {
-    s_logger->info("Estou no update ...");
+    s_logger->info("I'm on update ...");
     hyro::Signal message;
     signal.setAmplitude(m_amplitude);
     signal.setFrequency(m_frequency);
