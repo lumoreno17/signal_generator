@@ -67,16 +67,16 @@ TEST (TestSignalGenerator, SignalGeneratorComponentCheck)
   ASSERT_EQ(Result::RESULT_OK, result);
 
   /* Create a fake input channel and test connection*/
-  auto inputPos = std::make_shared<FakeInput<Signal>>("inputPos"_uri, "api", "/signal_generator/signals");
-  ASSERT_TRUE(inputPos->connect());
+  auto input_signals = std::make_shared<FakeInput<Signal>>("input_signals"_uri, "api", "/signal_generator/signals");
+  ASSERT_TRUE(input_signals->connect());
 
   signal_generator_sm.update();
-  auto valuePos = std::shared_ptr<const Signal>();
+  auto fake_input_value = std::shared_ptr<const Signal>();
   
   /* Test if the fake input is receiving data of SignalGeneratorComponent */
-  ReceiveStatus ret = inputPos->receive(valuePos, 500ms);
+  ReceiveStatus ret = input_signals->receive(fake_input_value, 500ms);
   ASSERT_EQ(ReceiveStatus::RECEIVE_OK, ret);
-  EXPECT_EQ(valuePos->value, 5.0);
+  EXPECT_EQ(fake_input_value->value, 5.0);
   
   /*Test the component behavior in face of a dynamic property which doesn't exists */
   DynamicPropertyAccess dynamic_property_access("/signal_generator"_uri);
@@ -84,18 +84,18 @@ TEST (TestSignalGenerator, SignalGeneratorComponentCheck)
   ASSERT_ANY_THROW(dynamic_property_access.get("not_exists", not_exits));
   
   /* Dynamic properties variables */
-  float m_amplitude, m_frequency;
-  bool m_cosine;
+  float amplitude, frequency;
+  bool cosine;
 
   /* Test the acess to the dynamic properties */
-  ASSERT_TRUE(dynamic_property_access.get("amplitude", m_amplitude));
-  ASSERT_TRUE(dynamic_property_access.get("frequency", m_frequency));
-  ASSERT_TRUE(dynamic_property_access.get("cosine", m_cosine));
+  ASSERT_TRUE(dynamic_property_access.get("amplitude", amplitude));
+  ASSERT_TRUE(dynamic_property_access.get("frequency", frequency));
+  ASSERT_TRUE(dynamic_property_access.get("cosine", cosine));
   
   /* Test the default values of the dynamic properties */
-  ASSERT_NEAR(m_amplitude, 5.0f, 0.001);
-  ASSERT_NEAR(m_frequency, 3.0f, 0.001);
-  ASSERT_EQ(m_cosine, true);
+  ASSERT_NEAR(amplitude, 5.0f, 0.001);
+  ASSERT_NEAR(frequency, 3.0f, 0.001);
+  ASSERT_EQ(cosine, true);
 
   /* Test the modification of dynamic properties */
   ASSERT_TRUE(dynamic_property_access.set("amplitude", 4.0f));
@@ -131,7 +131,6 @@ TEST (DigitalConverterTest, DynamicPropertyCheck)
   /* Create a fake input channel and test connection */
   auto fake_digital_signals = std::make_shared<FakeInput<float>>("digital_signals"_uri, "api", "/digital_converter/digital_signals");
   ASSERT_TRUE(fake_digital_signals->connect());
-  auto value = std::shared_ptr<const float>();
 
 }
 

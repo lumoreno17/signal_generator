@@ -78,9 +78,9 @@ int main(int argc, char **argv)
   StateMachineSpinner digital_converter_spinner(digital_converter_sm, cancellation_token,10ms);
     
   /* Initialize dynamic properties with a default value */
-  float m_amplitude = 0.0f;
-  float m_frequency = 0.0f;
-  bool m_cosine = true;
+  float amplitude = 0.0f;
+  float frequency = 0.0f;
+  bool cosine = true;
     
   std::this_thread::sleep_for(2s);
 
@@ -89,10 +89,10 @@ int main(int argc, char **argv)
   std::cout << "Get dynamic properties..." << std::endl;
   
   /* Read dynamic properties values */
-  dynamic_property_access.get<float>("amplitude", m_amplitude);
-  dynamic_property_access.get<float>("frequency", m_frequency);
-  dynamic_property_access.get<bool>("cosine", m_cosine);
-  std::cout << "Current amplitude: " << m_amplitude << std::endl << "Current frequency: " << m_frequency << std::endl;
+  dynamic_property_access.get<float>("amplitude", amplitude);
+  dynamic_property_access.get<float>("frequency", frequency);
+  dynamic_property_access.get<bool>("cosine", cosine);
+  std::cout << "Current amplitude: " << amplitude << std::endl << "Current frequency: " << frequency << std::endl;
 
   /* Get user inputs for dynamic properties */
   std::string amp_str, freq_str, cosine_str;
@@ -103,16 +103,16 @@ int main(int argc, char **argv)
   std::cout << "Please inform the cosine: ";
   std::cin >> cosine_str;
 
-  m_amplitude = std::stof(amp_str);
-  m_frequency = std::stof(freq_str);
-  m_cosine = std::stof(cosine_str);
+  amplitude = std::stof(amp_str);
+  frequency = std::stof(freq_str);
+  cosine = std::stof(cosine_str);
     
     /* Set dynamic properties value */
-  dynamic_property_access.set<float>("amplitude", m_amplitude);
-  dynamic_property_access.set<float>("frequency", m_frequency);
-  dynamic_property_access.set<bool>("cosine", m_cosine);
+  dynamic_property_access.set<float>("amplitude", amplitude);
+  dynamic_property_access.set<float>("frequency", frequency);
+  dynamic_property_access.set<bool>("cosine", cosine);
 
-  std::cout << "Current amplitude2: " << m_amplitude << std::endl << "Current frequency2: " << m_frequency << std::endl;
+  std::cout << "Current amplitude2: " << amplitude << std::endl << "Current frequency2: " << frequency << std::endl;
     
   /*Plot digital signal */
   widgets::plot2d<float>("digital_signal", "/digital_converter/digital_signals", widgets::Plot2dSettings::initWithProtocol("api"));

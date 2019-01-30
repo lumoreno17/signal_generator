@@ -23,49 +23,48 @@
 namespace hyro
 {
 
-    class SIGNAL_GENERATOR_COMPONENTS_EXPORT SignalGeneratorComponent : public Component
-    {
-        public:
-            
-            //using Component::Component;
-            /**
-             * @brief Construct a new Signal Generator Component object
-             * 
-             * @param uri 
-             */
-            SignalGeneratorComponent(URI uri);
-            /**
-             * @brief Destroy the Signal Generator Component object
-             * 
-             */
-            inline virtual 
-            ~SignalGeneratorComponent () override = default;
+class SIGNAL_GENERATOR_COMPONENTS_EXPORT SignalGeneratorComponent : public Component
+{
+public:
 
-            /*State transistions*/
+  /**
+  * @brief Construct a new Signal Generator Component object
+  * 
+  * @param uri 
+  */
+  SignalGeneratorComponent(URI uri);
+  /**
+  * @brief Destroy the Signal Generator Component object
+  * 
+  */
+  inline virtual 
+  ~SignalGeneratorComponent () override = default;
 
-            virtual Result
-            init (const hyro::ComponentConfiguration & config) override;
+  /*State transistions*/
 
-            virtual Result
-            reset () override;
+  virtual Result
+  init (const hyro::ComponentConfiguration & config) override;
 
-            virtual Result
-            check () override;
+  virtual Result
+  reset () override;
 
-            virtual Result
-            start () override;
+  virtual Result
+  check () override;
 
-            virtual Result
-            update () override;
+  virtual Result
+  start () override;
 
-        private:
+  virtual Result
+  update () override;
 
-            static std::shared_ptr<hyro::HyroLogger> s_logger;
-            std::shared_ptr<hyro::ChannelOutput<Signal>> m_output; 
-            float m_amplitude, m_frequency;
-            bool m_cosine;
-            SignalGenerator signal;
-    };
+private:
+
+  static std::shared_ptr<hyro::HyroLogger> s_logger;
+  std::shared_ptr<hyro::ChannelOutput<Signal>> m_output; 
+  float m_amplitude, m_frequency;
+  bool m_cosine;
+  SignalGenerator m_signal;
+};
 
 } // namespace hyro
 #endif // HYRO_SIGNALGENERATORCOMPONENT_H

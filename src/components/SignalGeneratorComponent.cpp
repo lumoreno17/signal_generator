@@ -28,7 +28,7 @@ namespace hyro
   hyro::Result
   SignalGeneratorComponent::init (const hyro::ComponentConfiguration & config)
   {
-    signal = SignalGenerator();
+    m_signal = SignalGenerator();
     std::shared_ptr<ChannelOutput<std::vector<int>>>
     m_dummy = this->registerOutput<std::vector<int>>("fix_dynamic"_uri, config);
     s_logger->info("Init:");
@@ -75,9 +75,9 @@ namespace hyro
   {
     s_logger->info("I'm on update ...");
     hyro::Signal message;
-    signal.setAmplitude(m_amplitude);
-    signal.setFrequency(m_frequency);
-    message.value = signal.getSignalValue(m_cosine);
+    m_signal.setAmplitude(m_amplitude);
+    m_signal.setFrequency(m_frequency);
+    message.value = m_signal.getSignalValue(m_cosine);
     m_output->sendAsync(message);
     s_logger->info("Sending data {}:", message);
     return hyro::Result::RESULT_OK;
