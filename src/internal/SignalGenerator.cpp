@@ -30,10 +30,7 @@ float SignalGenerator::getSignalValue(bool cosine)
   float rad = m_deg / 180.0 * M_PI;
   m_deg += m_step;
 
-  if(cosine){
-      return m_amp *cos(rad);
-  }
-  return m_amp *sin(rad);
+  return (cosine) ? m_amp*cos(rad) : m_amp*sin(rad);
 }
 
 /* Set the signal frequency */
