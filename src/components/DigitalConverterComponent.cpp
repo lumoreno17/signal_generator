@@ -78,8 +78,8 @@ namespace hyro
     s_logger->info("I am in callback");
     hyro::Signal analog_signal;
     analog_signal = *value;
-    Thresholding digital_converter(analog_signal.value,m_amplitude,m_thresholding);
-    float digital_signal = digital_converter.makeThresholding(); 
+    Thresholding digital_converter(m_amplitude,m_thresholding);
+    float digital_signal = digital_converter.getThreshValue(analog_signal.value); 
     m_output->sendAsync(digital_signal);
     s_logger->info("Data received {}:", digital_signal);
   } 

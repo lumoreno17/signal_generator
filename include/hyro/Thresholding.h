@@ -17,7 +17,7 @@ class Thresholding{
    * amplitude is the amplitude of the digital signal.
    * 
    */
-  double data_sample, amplitude, thresholding;
+  double m_amplitude, m_thresholding;
   public:
     /**
      * @brief Construct a new Thresholding object
@@ -25,7 +25,7 @@ class Thresholding{
      * @param data_sample the input value to be analyzed
      * @param amplitude the amplitude of the digital signal 
      */
-    Thresholding(double data_sample, float amplitude, float thresholding);
+    Thresholding(float amplitude, float thresholding);
     /**
      * @brief Comparison between the data_sample value and threshold value
      * 
@@ -33,7 +33,7 @@ class Thresholding{
      * If the data_sample value is less than the threshold value it returns the negative value of amplitude
      * @return float 
      */
-    float makeThresholding();
+    float getThreshValue(double signal);
 };
 }
 
