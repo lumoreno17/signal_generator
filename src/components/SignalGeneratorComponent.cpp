@@ -39,9 +39,14 @@ namespace hyro
     m_frequency = 3.0f;
     m_cosine = true;
 
-    registerDynamicProperty<float>("amplitude", m_amplitude, [this](const float value){return value>=0 && value<=5;});
+    /*registerDynamicProperty<float>("amplitude", m_amplitude, [this](const float value){return value>=0 && value<=5;});
     registerDynamicProperty<float>("frequency", m_frequency, [this](const float value){return value>=0 && value<=5;});
-    registerDynamicProperty<bool>("cosine", m_cosine, [this](const bool value){return value==true || value==false;});
+    registerDynamicProperty<bool>("cosine", m_cosine, [this](const bool value){return value==true || value==false;});*/
+
+    registerDynamicProperty<float>("amplitude", m_amplitude, [](const float value){return true;});
+    registerDynamicProperty<float>("frequency", m_frequency, [](const float value){return true;});
+    registerDynamicProperty<bool>("cosine", m_cosine, [](const bool value){return value;});
+
     DynamicPropertyAccess dynamic_property_access("/signal_generator"_uri);
 
     std::cout << "Get dynamic properties..." << std::endl;
