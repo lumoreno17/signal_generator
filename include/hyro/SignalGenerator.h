@@ -13,7 +13,7 @@ namespace hyro
      * and rad the angle conversion to radians
      * 
      */
-    float m_deg, m_step, m_amp, rad;
+    float m_deg, m_step, m_amp;
     public:
       /**
        * @brief Construct a new Signal Generator object

@@ -27,7 +27,7 @@ SignalGenerator::SignalGenerator()
  /* Get the sine or cos for the desired angle */
 float SignalGenerator::getSignalValue(bool cosine)
 {
-  rad = m_deg / 180.0 * M_PI;
+  float rad = m_deg / 180.0 * M_PI;
   m_deg += m_step;
 
   if(cosine){
