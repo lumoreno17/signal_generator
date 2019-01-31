@@ -53,6 +53,8 @@ namespace hyro
   hyro::Result
   DigitalConverterComponent::check ()
   {
+    if (m_input->connectionStatus() != ConnectionStatus::CONNECTION_UP)
+      return Result::RESULT_ERROR;
     return hyro::Result::RESULT_OK;
   }
 
