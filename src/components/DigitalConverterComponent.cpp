@@ -23,8 +23,8 @@
 namespace hyro
 {
   DigitalConverterComponent::DigitalConverterComponent(URI uri): hyro::Component(uri){
-    m_amplitude = 3.0;
-    m_thresholding = 0.0;
+    //m_amplitude = 3.0;
+    //m_thresholding = 0.0;
   }
 
   std::shared_ptr<hyro::HyroLogger> DigitalConverterComponent::s_logger = hyro::HyroLoggerManager::CreateLogger("DigitalConverterComponent");
@@ -33,6 +33,8 @@ namespace hyro
   hyro::Result
   DigitalConverterComponent::init (const hyro::ComponentConfiguration & config)
   {
+    m_amplitude = config.parameters.getParameter<float>("amplitude", 3.0);
+    m_thresholding = config.parameters.getParameter<float>("thresholding", 0.0);
     m_input = this->registerInput<Signal>("signals"_uri, config);
     m_output = this->registerOutput<float>("digital_signals"_uri, config);
     s_logger->info("Init:");
