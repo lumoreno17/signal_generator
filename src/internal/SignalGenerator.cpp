@@ -18,9 +18,9 @@ namespace hyro
    * @brief Construct a new Signal Generator:: Signal Generator object
    * 
    */
-SignalGenerator::SignalGenerator()
+SignalGenerator::SignalGenerator():
+  m_deg(0)
 {
-  m_deg = 0;
 }
 
  
