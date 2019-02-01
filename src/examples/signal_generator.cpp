@@ -26,6 +26,56 @@ using namespace hyro;
  * @param argv 
  * @return int 
  */
+
+void dynamic_loop(){
+  
+  /* Initialize dynamic properties with a default value */
+  float amplitude = 0.0f;
+  float frequency = 0.0f;
+  bool cosine = true;
+
+  char ch;
+
+  do{
+
+    DynamicPropertyAccess dynamic_property_access("/signal_generator"_uri);
+    std::cout << "Get dynamic properties..." << std::endl;
+
+    /* Read dynamic properties values */
+    dynamic_property_access.get<float>("amplitude", amplitude);
+    dynamic_property_access.get<float>("frequency", frequency);
+    dynamic_property_access.get<bool>("cosine", cosine);
+    std::cout << "Current amplitude: " << amplitude << std::endl << "Current frequency: " << frequency << std::endl;
+
+    /* Get user inputs for dynamic properties */
+    std::string amp_str, freq_str, cosine_str;
+    std::cout << "Please inform the amplitude: ";
+    std::cin >> amp_str;
+    std::cout << "Please inform the frequency: ";
+    std::cin >> freq_str;
+    std::cout << "Please inform the cosine: ";
+    std::cin >> cosine_str;
+
+    amplitude = std::stof(amp_str);
+    frequency = std::stof(freq_str);
+    cosine = std::stof(cosine_str);
+      
+      /* Set dynamic properties value */
+    dynamic_property_access.set<float>("amplitude", amplitude);
+    dynamic_property_access.set<float>("frequency", frequency);
+    dynamic_property_access.set<bool>("cosine", cosine);
+
+    std::cout << "Current amplitude2: " << amplitude << std::endl << "Current frequency2: " << frequency << std::endl;
+    
+    std::cout << "Continue ? [y/N] " << std::endl;
+    std::cin >> ch;
+
+  }while (ch != 'N');
+}
+
+
+
+
 int main(int argc, char **argv)
 {
   hyro::LogConfig config;
@@ -77,41 +127,9 @@ int main(int argc, char **argv)
   StateMachineSpinner signal_generator_spinner(signal_generator_sm, cancellation_token,10ms);
   StateMachineSpinner digital_converter_spinner(digital_converter_sm, cancellation_token,10ms);
     
-  /* Initialize dynamic properties with a default value */
-  float amplitude = 0.0f;
-  float frequency = 0.0f;
-  bool cosine = true;
-    
   std::this_thread::sleep_for(2s);
 
-  DynamicPropertyAccess dynamic_property_access("/signal_generator"_uri);
-  std::cout << "Get dynamic properties..." << std::endl;
-
-  /* Read dynamic properties values */
-  dynamic_property_access.get<float>("amplitude", amplitude);
-  dynamic_property_access.get<float>("frequency", frequency);
-  dynamic_property_access.get<bool>("cosine", cosine);
-  std::cout << "Current amplitude: " << amplitude << std::endl << "Current frequency: " << frequency << std::endl;
-
-  /* Get user inputs for dynamic properties */
-  std::string amp_str, freq_str, cosine_str;
-  std::cout << "Please inform the amplitude: ";
-  std::cin >> amp_str;
-  std::cout << "Please inform the frequency: ";
-  std::cin >> freq_str;
-  std::cout << "Please inform the cosine: ";
-  std::cin >> cosine_str;
-
-  amplitude = std::stof(amp_str);
-  frequency = std::stof(freq_str);
-  cosine = std::stof(cosine_str);
-    
-    /* Set dynamic properties value */
-  dynamic_property_access.set<float>("amplitude", amplitude);
-  dynamic_property_access.set<float>("frequency", frequency);
-  dynamic_property_access.set<bool>("cosine", cosine);
-
-  std::cout << "Current amplitude2: " << amplitude << std::endl << "Current frequency2: " << frequency << std::endl;
+  std::thread th(dynamic_loop);
   
   /*Plot digital signal */
   widgets::plot2d<float>("digital_signal", "/digital_converter/digital_signals", widgets::Plot2dSettings::initWithProtocol("api"));
