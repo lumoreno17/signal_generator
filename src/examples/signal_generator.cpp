@@ -85,9 +85,8 @@ int main(int argc, char **argv)
   std::this_thread::sleep_for(2s);
 
   DynamicPropertyAccess dynamic_property_access("/signal_generator"_uri);
-
   std::cout << "Get dynamic properties..." << std::endl;
-  
+
   /* Read dynamic properties values */
   dynamic_property_access.get<float>("amplitude", amplitude);
   dynamic_property_access.get<float>("frequency", frequency);
@@ -113,7 +112,7 @@ int main(int argc, char **argv)
   dynamic_property_access.set<bool>("cosine", cosine);
 
   std::cout << "Current amplitude2: " << amplitude << std::endl << "Current frequency2: " << frequency << std::endl;
-    
+  
   /*Plot digital signal */
   widgets::plot2d<float>("digital_signal", "/digital_converter/digital_signals", widgets::Plot2dSettings::initWithProtocol("api"));
    

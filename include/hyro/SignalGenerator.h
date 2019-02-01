@@ -4,7 +4,8 @@
 #define SIGNAL_GENERATOR_H
 
 namespace hyro
-{
+{ 
+  enum Function {cosine, sine};
   class SignalGenerator
   {
     /**
@@ -26,7 +27,7 @@ namespace hyro
        * @param cosine Choose the signal type (cossine or sine)
        * @return float the signal value
        */
-      float getSignalValue(bool cosine);
+      float getSignalValue(Function func);
       /**
        * @brief Set the Frequency of the signal
        * 

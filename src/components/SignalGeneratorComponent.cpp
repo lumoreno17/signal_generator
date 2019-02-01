@@ -37,7 +37,7 @@ namespace hyro
 
     m_amplitude = 5.0f;
     m_frequency = 3.0f;
-    m_cosine = true;
+    m_cosine = 1;
 
     /*registerDynamicProperty<float>("amplitude", m_amplitude, [this](const float value){return value>=0 && value<=5;});
     registerDynamicProperty<float>("frequency", m_frequency, [this](const float value){return value>=0 && value<=5;});
@@ -82,7 +82,13 @@ namespace hyro
     hyro::Signal message;
     m_signal.setAmplitude(m_amplitude);
     m_signal.setFrequency(m_frequency);
-    message.value = m_signal.getSignalValue(m_cosine);
+    
+    if(m_cosine){
+      message.value = m_signal.getSignalValue(cosine);
+    }
+    else {
+      message.value = m_signal.getSignalValue(sine);
+    }
     m_output->sendAsync(message);
     s_logger->info("Sending data {}:", message);
     return hyro::Result::RESULT_OK;

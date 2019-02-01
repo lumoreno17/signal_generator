@@ -25,7 +25,7 @@ SignalGenerator::SignalGenerator():
 
  
  /* Get the sine or cos for the desired angle */
-float SignalGenerator::getSignalValue(bool cosine)
+float SignalGenerator::getSignalValue(Function func)
 {
   float rad = m_deg / 180.0 * M_PI;
   m_deg += m_step;
