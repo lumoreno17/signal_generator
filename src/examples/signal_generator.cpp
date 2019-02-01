@@ -126,8 +126,6 @@ int main(int argc, char **argv)
   /*Create spinners*/
   StateMachineSpinner signal_generator_spinner(signal_generator_sm, cancellation_token,10ms);
   StateMachineSpinner digital_converter_spinner(digital_converter_sm, cancellation_token,10ms);
-    
-  std::this_thread::sleep_for(2s);
 
   std::thread th(dynamic_loop);
   
