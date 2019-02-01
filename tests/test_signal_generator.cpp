@@ -41,48 +41,41 @@ namespace test
  * @brief Construct a new TEST object for SignalGeneratorComponent
  * 
  */
+
 TEST (TestSignalGenerator, SignalGeneratorComponentCheck)
 {
 
-  auto signal_generator_configuration = 
-      "{"
-        "outputs: {"
-           "signals: { protocol: 'api'},"
-           "fix_dynamic: {protocol: 'api'}"
-        "}" 
-      "}";
+  auto configuration = ComponentConfiguration("{" 
+  "outputs: {"
+    "signals: { protocol: 'api'},"
+    "fix_dynamic: {protocol: 'api'}"
+    "}" 
+    "}"
+  );
 
-
+  
   StateMachine signal_generator_sm(std::make_shared<SignalGeneratorComponent>("/signal_generator"_uri));
+  
+  ASSERT_AND_RUN_STATE_MACHINE(signal_generator_sm, configuration, ConnectionConfiguration());
 
-  auto result = signal_generator_sm.init(ComponentConfiguration(signal_generator_configuration));
-
-  /* Teste state transitions */
-  ASSERT_EQ(Result::RESULT_OK, result);
-  result = signal_generator_sm.start();
-  ASSERT_EQ(Result::RESULT_OK, result);
-  result = signal_generator_sm.connect(ConnectionConfiguration());
-  ASSERT_EQ(Result::RESULT_OK, result);
-  result = signal_generator_sm.check();
-  ASSERT_EQ(Result::RESULT_OK, result);
-
-  /* Create a fake input channel and test connection*/
-  auto input_signals = std::make_shared<FakeInput<Signal>>("input_signals"_uri, "api", "/signal_generator/signals");
-  ASSERT_TRUE(input_signals->connect());
+  auto fake_input_signals = std::make_shared<FakeInput<Signal>>("fake_input_signals"_uri, "api", "/signal_generator/signals");
+  
+  ASSERT_TRUE(fake_input_signals->connect());
 
   signal_generator_sm.update();
+
   auto fake_input_value = std::shared_ptr<const Signal>();
+
+  ReceiveStatus ret = fake_input_signals->receive(fake_input_value, 500ms);
   
-  /* Test if the fake input is receiving data of SignalGeneratorComponent */
-  ReceiveStatus ret = input_signals->receive(fake_input_value, 500ms);
   ASSERT_EQ(ReceiveStatus::RECEIVE_OK, ret);
-  EXPECT_EQ(fake_input_value->value, 5.0);
+  EXPECT_EQ(fake_input_value->value, 0.0);
   
   /*Test the component behavior in face of a dynamic property which doesn't exists */
   DynamicPropertyAccess dynamic_property_access("/signal_generator"_uri);
   float not_exits;
   ASSERT_ANY_THROW(dynamic_property_access.get("not_exists", not_exits));
-  
+
   /* Dynamic properties variables */
   float amplitude, frequency;
   bool cosine;
@@ -100,14 +93,11 @@ TEST (TestSignalGenerator, SignalGeneratorComponentCheck)
   /* Test the modification of dynamic properties */
   ASSERT_TRUE(dynamic_property_access.set("amplitude", 4.0f));
   ASSERT_TRUE(dynamic_property_access.set("frequency", 3.0f));
-  //ASSERT_TRUE(dynamic_property_access.set("cosine", 1));
-  
-}
+  ASSERT_TRUE(dynamic_property_access.set("cosine", true));
 
-/**
- * @brief Construct a new TEST object for DigitalConverterComponent
- * 
- */
+}
+ 
+
 TEST (DigitalConverterTest, DynamicPropertyCheck)
 {
   /* Log configuration */
@@ -127,11 +117,10 @@ TEST (DigitalConverterTest, DynamicPropertyCheck)
   ASSERT_TRUE(fake_output_signals->start());
   auto endpoint = ConnectionConfiguration("{ signals: { endpoint: 'fake_signals' } }");
   ASSERT_AND_RUN_STATE_MACHINE(digital_converter_sm, configuration, endpoint);
-  
+
   /* Create a fake input channel and test connection */
   auto fake_digital_signals = std::make_shared<FakeInput<float>>("digital_signals"_uri, "api", "/digital_converter/digital_signals");
   ASSERT_TRUE(fake_digital_signals->connect());
-
 }
 
 int main (int argc, char **argv)
