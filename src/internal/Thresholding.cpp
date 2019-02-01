@@ -10,7 +10,7 @@
  */
 #include <bits/stdc++.h>
 #include <chrono>
-#include <hyro/Thresholding.h>
+#include <../src/internal/Thresholding.h>
 
 namespace hyro
 {

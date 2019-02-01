@@ -18,10 +18,11 @@ include_directories(
 set(SIGNAL_GENERATOR_HEADERS
   include/hyro/SignalGeneratorComponent.h
   include/hyro/DigitalConverterComponent.h
-  include/hyro/SignalGenerator.h
   include/hyro/msgs/Signal.h
   include/hyro/msgs/Signal.proto.h
-  include/hyro/Thresholding.h
+  src/internal/Thresholding.h
+  src/internal/SignalGenerator.h
+
 )
 
 #Declare source files

@@ -21,7 +21,7 @@
 #include <hyro/commands/CommandHandler.h>
 
 #include <hyro/msgs/Signal.h>
-#include <hyro/Thresholding.h>
+#include <../src/internal/Thresholding.h>
 
 namespace hyro
 {

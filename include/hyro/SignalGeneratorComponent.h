@@ -17,7 +17,7 @@
 
 #include <hyro/core/Component.h>
 #include <hyro/msgs/Signal.h>
-#include <hyro/SignalGenerator.h>
+#include <../src/internal/SignalGenerator.h>
 #include <hyro/msgs/common/Basic.h>
 
 namespace hyro

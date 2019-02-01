@@ -15,7 +15,7 @@
 #include <hyro/factory/CommandFactory.h>
 
 #include <hyro/msgs/common/Basic.h>
-#include <hyro/Thresholding.h>
+#include <../src/internal/Thresholding.h>
 #include <hyro/msgs/Signal.h>
 
 #include <iostream>

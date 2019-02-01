@@ -10,7 +10,7 @@
  */
 #include <bits/stdc++.h>
 #include <chrono>
-#include <hyro/SignalGenerator.h>
+#include <../src/internal/SignalGenerator.h>
 
 namespace hyro
 {

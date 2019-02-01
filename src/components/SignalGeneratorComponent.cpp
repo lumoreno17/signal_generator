@@ -10,7 +10,7 @@
  */
 #include <hyro/SignalGeneratorComponent.h>
 #include <hyro/msgs/common/Basic.h>
-#include <hyro/SignalGenerator.h>
+#include <../src/internal/SignalGenerator.h>
 #include <hyro/msgs/Signal.h>
 #include <hyro/utils/DynamicPropertyAccess.h>
 
