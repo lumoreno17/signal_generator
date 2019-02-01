@@ -22,11 +22,6 @@
 
 namespace hyro
 {
-  DigitalConverterComponent::DigitalConverterComponent(URI uri): hyro::Component(uri){
-    //m_amplitude = 3.0;
-    //m_thresholding = 0.0;
-  }
-
   std::shared_ptr<hyro::HyroLogger> DigitalConverterComponent::s_logger = hyro::HyroLoggerManager::CreateLogger("DigitalConverterComponent");
   
   /*Initialize the input and outputs of the object*/

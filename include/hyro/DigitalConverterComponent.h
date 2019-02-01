@@ -29,12 +29,8 @@ namespace hyro
 class SIGNAL_GENERATOR_COMPONENTS_EXPORT DigitalConverterComponent : public Component
 {
 public:
-  /**
-  * @brief Construct a new Digital Converter Component object
-  * 
-  * @param uri 
-  */
-  DigitalConverterComponent(URI uri);
+ 
+  using Component::Component;
   /**
   * @brief Destroy the Digital Converter Component object
   */

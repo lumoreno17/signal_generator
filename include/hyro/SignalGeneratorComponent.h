@@ -26,13 +26,9 @@ namespace hyro
 class SIGNAL_GENERATOR_COMPONENTS_EXPORT SignalGeneratorComponent : public Component
 {
 public:
+ 
+  using Component::Component;
 
-  /**
-  * @brief Construct a new Signal Generator Component object
-  * 
-  * @param uri 
-  */
-  SignalGeneratorComponent(URI uri);
   /**
   * @brief Destroy the Signal Generator Component object
   * 

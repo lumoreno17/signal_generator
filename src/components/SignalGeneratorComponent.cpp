@@ -18,9 +18,6 @@
 
 namespace hyro
 {
-  SignalGeneratorComponent::SignalGeneratorComponent(URI uri): hyro::Component(uri){
-
-  }
   /* Create a log variable */
   std::shared_ptr<hyro::HyroLogger> SignalGeneratorComponent::s_logger = hyro::HyroLoggerManager::CreateLogger("SignalGeneratorComponent");
   
