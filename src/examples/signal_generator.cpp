@@ -30,9 +30,8 @@ using namespace hyro;
 void dynamic_loop(){
   
   /* Initialize dynamic properties with a default value */
-  float amplitude = 0.0f;
-  float frequency = 0.0f;
-  bool cosine = true;
+  float amplitude,frequency;
+  bool cosine;
 
   char ch;
 
