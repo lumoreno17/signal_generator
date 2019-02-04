@@ -18,27 +18,25 @@
 #include <hyro/common/Time.h>
 namespace hyro
 { 
-  
-    /**
-     * @brief Message components: timestamp, frame_id and value
-     * 
-     */
-    struct SIGNAL_GENERATOR_COMPONENTS_EXPORT Signal
-    {
-      Time timestamp;
-      std::string frame_id;
-      float value;
-    };
+  /**
+   * @brief Message components: timestamp, frame_id and value
+   * 
+   */
+  struct SIGNAL_GENERATOR_COMPONENTS_EXPORT Signal
+  {
+    Time timestamp;
+    std::string frame_id;
+    float value;
+  };
 
-    inline std::ostream &
-    operator << (std::ostream & os, const Signal & signal)
-    {
-      return os << "{timestamp: " << signal.timestamp.count() << "ns, frame_id: " << signal.frame_id << "value: " << signal.value << "}";
-    }
+  inline std::ostream &
+  operator << (std::ostream & os, const Signal & signal)
+  {
+    return os << "{timestamp: " << signal.timestamp.count() << "ns, frame_id: " << signal.frame_id << "value: " << signal.value << "}";
+  }
 
 } // namespace hyro
 
 #include <hyro/msgs/Signal.proto.h>
-
 #endif // HYRO_MSGS_SIGNAL_H
 

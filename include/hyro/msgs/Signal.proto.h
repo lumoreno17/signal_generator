@@ -20,33 +20,30 @@
 
 namespace hyro
 {
-  
-
-    template <>
-    struct ProtobufTraits<Signal> : public ProtobufTraitsDefault<Signal, msgs::Signal>
+  template <>
+  struct ProtobufTraits<Signal> : public ProtobufTraitsDefault<Signal, msgs::Signal>
+  {
+    /* Flow to receive a message */
+    static void
+    FromMessage (const msgs::Signal & msg,
+      Signal * value)
     {
-      /* Flow to receive a message */
-      static void
-      FromMessage (const msgs::Signal & msg,
-        Signal * value)
-      {
-       
-        value->timestamp = hyro::Time{msg.timestamp()};
-        value->frame_id = msg.frame_id();
-        value->value = msg.value();
-      }
       
-      /* Flow to send a message */
-      static void
-      ToMessage (const Signal & value,
-             msgs::Signal * msg)
-      {
-        msg->set_timestamp(value.timestamp.count());
-        msg->set_frame_id(value.frame_id);
-        msg->set_value(value.value);
-      }
-
-    };
+      value->timestamp = hyro::Time{msg.timestamp()};
+      value->frame_id = msg.frame_id();
+      value->value = msg.value();
+    }
+      
+    /* Flow to send a message */
+    static void
+    ToMessage (const Signal & value,
+            msgs::Signal * msg)
+    {
+      msg->set_timestamp(value.timestamp.count());
+      msg->set_frame_id(value.frame_id);
+      msg->set_value(value.value);
+    }
+  };
 } // namespace hyro
 
 #endif // HYRO_MSGS_SIGNAL_PROTO_H
