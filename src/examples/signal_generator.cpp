@@ -52,12 +52,12 @@ void dynamic_loop(){
     std::cin >> amp_str;
     std::cout << "Please inform the frequency: ";
     std::cin >> freq_str;
-    std::cout << "Please inform the cosine: ";
+    std::cout << "Please inform the cosine (Inform 1 for sine and 0 for cosine): ";
     std::cin >> cosine_str;
 
     amplitude = std::stof(amp_str);
     frequency = std::stof(freq_str);
-    cosine = std::stof(cosine_str);
+    cosine = std::stoi(cosine_str);
       
       /* Set dynamic properties value */
     dynamic_property_access.set<float>("amplitude", amplitude);
