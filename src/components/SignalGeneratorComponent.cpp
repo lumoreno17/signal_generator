@@ -31,10 +31,10 @@ namespace hyro
     s_logger->info("Init:");
   
     m_output = this->registerOutput<Signal>("signals"_uri, config);
-
-    m_amplitude = 5.0f;
-    m_frequency = 3.0f;
-    m_cosine = 1;
+    
+    m_amplitude = config.parameters.getParameter<float>("amplitude", 5.0f);
+    m_frequency = config.parameters.getParameter<float>("frequency", 3.0f);
+    m_cosine = config.parameters.getParameter<bool>("func", true);
 
     registerDynamicProperty<float>("amplitude", m_amplitude, [](const float value){return true;});
     registerDynamicProperty<float>("frequency", m_frequency, [](const float value){return true;});
