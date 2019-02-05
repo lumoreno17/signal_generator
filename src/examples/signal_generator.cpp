@@ -9,8 +9,8 @@
  * 
  */
 #include <memory>
-#include <QApplication>
-#include <QTimer>
+//#include <QApplication>
+//#include <QTimer>
 #include <hyro/core/StateMachine.h>
 #include <hyro/utils/DynamicPropertyAccess.h>
 #include <hyro/widgets/WidgetCollection.h>

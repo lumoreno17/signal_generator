@@ -1,14 +1,14 @@
 #Package information
 hyro_init_package(signal_generator VERSION 0.0.1)
 
-find_package ( Qt4 COMPONENTS QtCore QtGui QtOpenGl )
+#find_package ( Qt4 COMPONENTS QtCore QtGui QtOpenGl )
 
 #Required packages
 hyro_find_package(hyro_utils REQUIRED)
 hyro_find_package(hyro_msgs REQUIRED)
 hyro_find_package(hyro_widgets REQUIRED)
 
-include(${QT_USE_FILE} )
+#include(${QT_USE_FILE} )
 
 include_directories(
   ${PROJECT_SOURCE_DIR}/src
