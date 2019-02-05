@@ -143,6 +143,7 @@ int main(int argc, char **argv)
   cancellation_token.cancel();
   signal_generator_spinner.wait();
   digital_converter_spinner.wait();
+  th.join();
   signal_generator_sm.reset();
   digital_converter_sm.reset();
   widgets::reset();
