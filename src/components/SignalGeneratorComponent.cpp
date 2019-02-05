@@ -76,6 +76,8 @@ namespace hyro
     m_signal.setAmplitude(m_amplitude);
     m_signal.setFrequency(m_frequency);
     message.value = m_cosine ? m_signal.getSignalValue(cosine) : m_signal.getSignalValue(sine);
+    message.timestamp = TimeUtils::Now_TimeSinceEpoch();
+    message.frame_id = "signal ";
     m_output->sendAsync(message);
     s_logger->info("Sending data {}:", message);
     return hyro::Result::RESULT_OK;
