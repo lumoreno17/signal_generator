@@ -69,7 +69,7 @@ TEST (TestSignalGenerator, SignalGeneratorComponentCheck)
   ReceiveStatus ret = fake_input_signals->receive(fake_input_value, 500ms);
   
   ASSERT_EQ(ReceiveStatus::RECEIVE_OK, ret);
-  EXPECT_EQ(fake_input_value->value, 0.0);
+  EXPECT_EQ(fake_input_value->value, 3.0);
   
   /*Test the component behavior in face of a dynamic property which doesn't exists */
   DynamicPropertyAccess dynamic_property_access("/signal_generator"_uri);
@@ -86,7 +86,7 @@ TEST (TestSignalGenerator, SignalGeneratorComponentCheck)
   ASSERT_TRUE(dynamic_property_access.get("cosine", cosine));
   
   /* Test the default values of the dynamic properties */
-  ASSERT_NEAR(amplitude, 5.0f, 0.001);
+  ASSERT_NEAR(amplitude, 3.0f, 0.001);
   ASSERT_NEAR(frequency, 3.0f, 0.001);
   ASSERT_EQ(cosine, true);
 
