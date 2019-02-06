@@ -32,13 +32,13 @@ namespace hyro
   
     m_output = this->registerOutput<Signal>("signals"_uri, config);
     
-    m_amplitude = config.parameters.getParameter<float>("amplitude", 5.0f);
+    m_amplitude = config.parameters.getParameter<float>("amplitude", 3.0f);
     m_frequency = config.parameters.getParameter<float>("frequency", 3.0f);
     m_cosine = config.parameters.getParameter<bool>("func", true);
 
     registerDynamicProperty<float>("amplitude", m_amplitude, [](const float value){return true;});
     registerDynamicProperty<float>("frequency", m_frequency, [](const float value){return true;});
-    registerDynamicProperty<bool>("cosine", m_cosine, [](const bool value){return value;});
+    registerDynamicProperty<bool>("cosine", m_cosine, [](const bool value){return true;});
 
     DynamicPropertyAccess dynamic_property_access("/signal_generator"_uri);
 
